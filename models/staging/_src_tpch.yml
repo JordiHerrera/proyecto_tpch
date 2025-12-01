@@ -50,16 +50,16 @@ sources:
       - name: nation
         description: Raw country data.
         columns:
-        - name: n_nationkey
-          description: Primary key fragment for country of origin data.
-          data_tests:
-            - not_null
-            - unique
+          - name: n_nationkey
+            description: Primary key fragment for country of origin data.
+            data_tests:
+              - not_null
+              - unique
       - name: region
         description: Raw regional data.
         columns:
-        - name: r_regionkey
-          description: Primary key fragment for country region data.
-          data_tests:
-            - not_null
-            - unique
+          - name: r_regionkey
+            description: Primary key fragment for country region data.
+            data_tests:
+              - not_null
+              - unique
