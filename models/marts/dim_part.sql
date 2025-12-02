@@ -1,3 +1,7 @@
+{{ config(
+    materialized = 'view'
+) }}
+
 with part as (
     select * from {{ ref ('stg_part')}}
 )

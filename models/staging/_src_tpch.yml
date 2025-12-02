@@ -34,7 +34,7 @@ sources:
       - name: part
         description: Raw part data.
         columns:
-          - name: ps_partkey
+          - name: p_partkey
             description: Primary key fragment for part data.
             data_tests:
               - not_null
@@ -42,7 +42,7 @@ sources:
       - name: supplier
         description: Raw supplier data.
         columns:
-          - name: ps_suppkey
+          - name: s_suppkey
             description: Primary key fragment for supplier data.
             data_tests:
               - not_null
@@ -63,3 +63,22 @@ sources:
             data_tests:
               - not_null
               - unique
+      - name: lineitem
+        description: Raw ordered item data.
+        columns:
+          - name: l_orderkey
+            description: P L A C E H O L D E R.
+            data_tests:
+              - not_null
+          - name: l_partkey
+            description: P L A C E H O L D E R.
+            data_tests:
+              - not_null
+          - name: l_suppkey
+            description: P L A C E H O L D E R.
+            data_tests:
+              - not_null
+          - name: l_linenumber
+            description: P L A C E H O L D E R.
+            data_tests:
+              - not_null
