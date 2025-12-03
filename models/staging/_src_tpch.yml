@@ -1,0 +1,84 @@
+sources:
+  - name: tpch
+    database: snowflake_sample_data
+    schema: TPCH_SF1
+    description: A clone of a Postgres application database.
+    tables:
+      - name: customer
+        description: Raw customer data.
+        columns:
+          - name: c_custkey
+            description: Primary key for customer data.
+            data_tests:
+              - unique
+              - not_null
+      - name: orders
+        description: Raw customer data.
+        columns:
+          - name: o_orderkey
+            description: Primary key for order data.
+            data_tests:
+              - unique
+              - not_null
+      - name: partsupp
+        description: Raw customer data.
+        columns:
+          - name: ps_partkey
+            description: Primary key fragment for partsupply data.
+            data_tests:
+              - not_null
+          - name: ps_suppkey
+            description: Primary key fragment for partsupply data.
+            data_tests:
+              - not_null
+      - name: part
+        description: Raw part data.
+        columns:
+          - name: p_partkey
+            description: Primary key fragment for part data.
+            data_tests:
+              - not_null
+              - unique
+      - name: supplier
+        description: Raw supplier data.
+        columns:
+          - name: s_suppkey
+            description: Primary key fragment for supplier data.
+            data_tests:
+              - not_null
+              - unique
+      - name: nation
+        description: Raw country data.
+        columns:
+          - name: n_nationkey
+            description: Primary key fragment for country of origin data.
+            data_tests:
+              - not_null
+              - unique
+      - name: region
+        description: Raw regional data.
+        columns:
+          - name: r_regionkey
+            description: Primary key fragment for country region data.
+            data_tests:
+              - not_null
+              - unique
+      - name: lineitem
+        description: Raw ordered item data.
+        columns:
+          - name: l_orderkey
+            description: Order related to lineitem.
+            data_tests:
+              - not_null
+          - name: l_partkey
+            description: Part related to lineitem.
+            data_tests:
+              - not_null
+          - name: l_suppkey
+            description: Part supplier to lineitem.
+            data_tests:
+              - not_null
+          - name: l_linenumber
+            description: Line number of lineitem.
+            data_tests:
+              - not_null

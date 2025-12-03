@@ -1,0 +1,96 @@
+models:
+  - name: stg_customer
+    description: Raw customer data.
+    config: 
+      materialized: table
+    columns:
+      - name: customer_key
+        description: Primary key for customer data.
+        data_tests:
+          - unique
+          - not_null
+  - name: stg_orders
+    description: Raw customer data.
+    config: 
+      materialized: table
+    columns:
+      - name: order_key
+        description: Primary key for order data.
+        data_tests:
+          - unique
+          - not_null
+  - name: stg_partsupp
+    description: Raw customer data.
+    config: 
+      materialized: table
+    columns:
+      - name: partsupp_part_key
+        description: Primary key fragment for partsupply data.
+        data_tests:
+          - not_null
+      - name: partsupp_supplier_key
+        description: Primary key fragment for partsupply data.
+        data_tests:
+          - not_null
+  - name: stg_part
+    description: Raw part data.
+    config: 
+      materialized: table
+    columns:
+      - name: part_key
+        description: Primary key fragment for part data.
+        data_tests:
+          - not_null
+          - unique
+  - name: stg_supplier
+    description: Raw supplier data.
+    config: 
+      materialized: table
+    columns:
+      - name: supplier_key
+        description: Primary key fragment for supplier data.
+        data_tests:
+          - not_null
+          - unique
+  - name: stg_nation
+    description: Raw country data.
+    config: 
+      materialized: table
+    columns:
+      - name: nation_key
+        description: Primary key fragment for country of origin data.
+        data_tests:
+          - not_null
+          - unique
+  - name: stg_region
+    description: Raw regional data.
+    config: 
+      materialized: table
+    columns:
+      - name: region_key
+        description: Primary key fragment for country region data.
+        data_tests:
+          - not_null
+          - unique
+  - name: stg_lineitem
+    description: Raw ordered item data.
+    config: 
+      materialized: table
+    columns:
+      - name: lineitem_order_key
+        description: Primary key of order related to lineitem.
+        data_tests:
+          - not_null
+      - name: lineitem_part_key
+        description: Primary key of part related to lineitem.
+        data_tests:
+          - not_null
+      - name: lineitem_supplier_key
+        description: Primary key for supplier of part related to lineitem.
+        data_tests:
+          - not_null
+      - name: lineitem_line_number
+        description: Line number of lineitem.
+        data_tests:
+          - not_null
+    # Test custom unique_composite_lineitem
