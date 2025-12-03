@@ -67,18 +67,18 @@ sources:
         description: Raw ordered item data.
         columns:
           - name: l_orderkey
-            description: P L A C E H O L D E R.
+            description: Order related to lineitem.
             data_tests:
               - not_null
           - name: l_partkey
-            description: P L A C E H O L D E R.
+            description: Part related to lineitem.
             data_tests:
               - not_null
           - name: l_suppkey
-            description: P L A C E H O L D E R.
+            description: Part supplier to lineitem.
             data_tests:
               - not_null
           - name: l_linenumber
-            description: P L A C E H O L D E R.
+            description: Line number of lineitem.
             data_tests:
               - not_null
