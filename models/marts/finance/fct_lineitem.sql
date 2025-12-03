@@ -29,6 +29,8 @@ joined_rename as (
     select
         l.*,
         c.customer_name as lineitem_customer_name,
+        c.customer_nation as lineitem_customer_nation,
+        c.customer_region as lineitem_customer_region,
         o.order_total_price as lineitem_order_total_price,
         p.part_name as lineitem_part_name,
         p.part_type as lineitem_part_type,
