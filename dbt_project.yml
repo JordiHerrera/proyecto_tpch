@@ -24,6 +24,18 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+vars:
+  dbt_meta_testing:
+    required_tests:
+      proyecto_tpch:
+        staging:
+          "unique.*|not_null": 2 
+        marts:
+
+tests:
+  proyecto_tpch:
+    +store_failures: true
+
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
@@ -38,6 +50,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   proyecto_tpch:
     staging:
+      # +required_tests: {"unique.*|not_null": 2}
       +materialized: table
       +schema: staging
     

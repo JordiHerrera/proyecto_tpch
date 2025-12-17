@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: fct_partsupp
+    description: Fact table combining Part and Supplier dimensions.
+    columns:
+      - name: partsupp_key
+        description: Surrogate primary key for the fact table. Generated using row_number().
+        tests:
+          - unique
+          - not_null
+      - name: partsupp_part_key
+        description: Foreign key linking to the dim_part model.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_part')
+              field: part_key
+
+      - name: partsupp_supplier_key
+        description: Foreign key linking to the dim_supplier model.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_supplier')
+              field: supplier_key
+      - name: partsupp_available_quantity
+        description: The available quantity of the part from the supplier.
+        tests:
+          - not_null
+
+      - name: partsupp_supply_cost
+        description: The cost to acquire the part from the supplier.
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: NUMERIC
+          - dbt_expectations.expect_column_values_to_be_positive
+      
+      - name: part_name
+        description: The name of the part (denormalized from dim_part).
+
+      - name: supplier_nation
+        description: The nation of the supplier (denormalized from dim_supplier).
+
+      - name: partsupp_comments
+        description: Comments related to the part-supplier relationship.
