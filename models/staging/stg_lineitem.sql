@@ -5,7 +5,7 @@ source as (
     select * from {{ source('tpch', 'lineitem') }}
 
 ),
-
+-- test comment ci
 rename as (
     select
         l_orderkey as lineitem_order_key,

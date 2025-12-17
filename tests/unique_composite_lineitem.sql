@@ -5,6 +5,7 @@ SELECT
     lineitem_line_number
 FROM
     {{ ref('stg_lineitem') }}
+    -- limit 5
 GROUP BY
     1, 2, 3, 4
 HAVING
