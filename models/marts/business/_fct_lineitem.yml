@@ -1,0 +1,117 @@
+
+version: 2
+
+models:
+  - name: fct_lineitem
+    description: "Registro de articulos, de proveedor a pedido"
+    columns:
+      - name: lineitem_key
+        data_type: number
+        description: "Primary key, surrogate key. Identificador único de lineitem"
+        data_tests:
+          - unique
+          - not_null
+
+      - name: lineitem_order_key
+        data_type: number
+        description: "Foreign key. Pedido al que va asociado el el articulo"
+        data_tests:
+          - not_null
+
+      - name: lineitem_part_key
+        data_type: number
+        description: "Foreign Key. Identificador de la pieza original del articulo"
+        data_tests:
+          - not_null
+
+      - name: lineitem_supplier_key
+        data_type: number
+        description: "Foreign key. Identificador del proveedor de la pieza a la que hace referencia el item"
+        data_tests:
+          - not_null
+
+      - name: lineitem_line_number
+        data_type: number
+        description: "Componente de Surrogate key. Linia correspondiente al articulo"
+        data_tests:
+          - not_null
+
+      - name: lineitem_discount
+        data_type: number
+        description: ""
+
+      - name: lineitem_tax
+        data_type: number
+        description: ""
+
+      - name: lineitem_return_flag
+        data_type: varchar
+        description: ""
+
+      - name: lineitem_line_status
+        data_type: varchar
+        description: ""
+
+      - name: lineitem_ship_date
+        data_type: date
+        description: ""
+
+      - name: lineitem_commit_date
+        data_type: date
+        description: ""
+
+      - name: lineitem_receipt_date
+        data_type: date
+        description: ""
+
+      - name: lieitem_ship_instruct
+        data_type: varchar
+        description: ""
+
+      - name: lineitem_ship_mode
+        data_type: varchar
+        description: ""
+
+      - name: lineitem_comment
+        data_type: varchar
+        description: ""
+
+      - name: lineitem_customer_name
+        data_type: varchar
+        description: ""
+
+      - name: lineitem_customer_nation
+        data_type: varchar
+        description: ""
+
+      - name: lineitem_customer_region
+        data_type: varchar
+        description: ""
+
+      - name: lineitem_order_total_price
+        data_type: number
+        description: ""
+
+      - name: lineitem_part_name
+        data_type: varchar
+        description: ""
+
+      - name: lineitem_part_type
+        data_type: varchar
+        description: ""
+
+      - name: lineitem_part_brand
+        data_type: varchar
+        description: ""
+
+      - name: lineitem_supplier_name
+        data_type: varchar
+        description: ""
+
+      - name: lineitem_supplier_nation
+        data_type: varchar
+        description: ""
+
+      - name: lineitem_supplier_region
+        data_type: varchar
+        description: ""
