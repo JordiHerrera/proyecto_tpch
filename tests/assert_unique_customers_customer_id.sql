@@ -1,7 +1,5 @@
-SELECT
-    COUNT(*) AS total_Rows,
-    COUNT(distinct o.*) AS distinct_rows
-FROM
-    {{ ref('fct_orders') }} o
-having  
-    total_Rows = distinct_rows
+select
+    count(*) as total_rows,
+    count(distinct order_key) as distinct_rows
+from {{ ref('fct_orders') }}
+having count(*) > count(distinct order_key)
