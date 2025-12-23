@@ -6,7 +6,7 @@ models:
     description: "Registro de articulos, de proveedor a pedido"
     columns:
       - name: lineitem_key
-        data_type: number
+        data_type: char
         description: "Primary key, surrogate key. Identificador único de lineitem"
         data_tests:
           - unique
@@ -38,80 +38,50 @@ models:
 
       - name: lineitem_discount
         data_type: number
-        description: ""
+        description: "Descuento aplcado sobre el precio del articulo"
 
       - name: lineitem_tax
         data_type: number
-        description: ""
+        description: "Impuestos aplicados sobre el precio del articulo"
 
       - name: lineitem_return_flag
         data_type: varchar
-        description: ""
+        description: "Estado de la devolución del articulo: No devuelto (N), devolución rechazada (R), devolución aceptada (A)"
+        data_tests:
+          - accepted_values:
+              values: ['N', 'R', 'A']
+          - not_null
 
       - name: lineitem_line_status
         data_type: varchar
-        description: ""
+        description: "Estado del pedido: Acabado (F, finished) o Abierto (O, Open)"
+        data_tests:
+          - accepted_values:
+              values: ['F', 'O']
+          - not_null
 
       - name: lineitem_ship_date
         data_type: date
-        description: ""
+        description: "Fecha de envio del artículo"
+        data_tests:
+          - not_null
 
       - name: lineitem_commit_date
         data_type: date
-        description: ""
-
-      - name: lineitem_receipt_date
-        data_type: date
-        description: ""
-
-      - name: lieitem_ship_instruct
-        data_type: varchar
-        description: ""
+        description: "Fecha acordada para completar el ciclo completo del articulo"
+        data_tests:
+          - not_null
 
       - name: lineitem_ship_mode
         data_type: varchar
-        description: ""
-
-      - name: lineitem_comment
-        data_type: varchar
-        description: ""
+        description: "Metodo de envio del artículo"
+        data_tests:
+          - accepted_values:
+              values: ['AIR', 'FOB', 'MAIL', 'RAIL', 'REG AIR', 'SHIP', 'TRUCK']
+          - not_null
 
       - name: lineitem_customer_name
         data_type: varchar
-        description: ""
-
-      - name: lineitem_customer_nation
-        data_type: varchar
-        description: ""
-
-      - name: lineitem_customer_region
-        data_type: varchar
-        description: ""
-
-      - name: lineitem_order_total_price
-        data_type: number
-        description: ""
-
-      - name: lineitem_part_name
-        data_type: varchar
-        description: ""
-
-      - name: lineitem_part_type
-        data_type: varchar
-        description: ""
-
-      - name: lineitem_part_brand
-        data_type: varchar
-        description: ""
-
-      - name: lineitem_supplier_name
-        data_type: varchar
-        description: ""
-
-      - name: lineitem_supplier_nation
-        data_type: varchar
-        description: ""
-
-      - name: lineitem_supplier_region
-        data_type: varchar
-        description: ""
+        description: "Nombre del cliente comprador"
+        data_tests:
+          - not_null

@@ -7,6 +7,9 @@
 with
 base_lineitem as (
     select * from {{ ref('stg_lineitem') }}
+    {% if is_incremental() %}
+    where lineitem_commit_date > (select max(lineitem_commit_date) from {{ this }})
+    {% endif %}
 ),
 
 part as (

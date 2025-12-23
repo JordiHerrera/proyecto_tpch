@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: "Datos de cliente base, complementado con país y región"
+    columns:
+      - name: customer_key
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_balance
+        data_tests:
+          - not_null
+  - name: dim_part
+    description: "Datos base de piezas unitarias."
+    columns:
+      - name: part_key
+        data_tests:
+          - unique
+          - not_null
+  - name: dim_supplier
+    description: "Datos base de proveedores, complemetado con país y región."
+    columns:
+      - name: supplier_key
+        data_tests:
+          - unique
+          - not_null
