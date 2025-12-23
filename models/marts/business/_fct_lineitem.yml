@@ -1,0 +1,87 @@
+
+version: 2
+
+models:
+  - name: fct_lineitem
+    description: "Registro de articulos, de proveedor a pedido"
+    columns:
+      - name: lineitem_key
+        data_type: char
+        description: "Primary key, surrogate key. Identificador único de lineitem"
+        data_tests:
+          - unique
+          - not_null
+
+      - name: lineitem_order_key
+        data_type: number
+        description: "Foreign key. Pedido al que va asociado el el articulo"
+        data_tests:
+          - not_null
+
+      - name: lineitem_part_key
+        data_type: number
+        description: "Foreign Key. Identificador de la pieza original del articulo"
+        data_tests:
+          - not_null
+
+      - name: lineitem_supplier_key
+        data_type: number
+        description: "Foreign key. Identificador del proveedor de la pieza a la que hace referencia el item"
+        data_tests:
+          - not_null
+
+      - name: lineitem_line_number
+        data_type: number
+        description: "Componente de Surrogate key. Linia correspondiente al articulo"
+        data_tests:
+          - not_null
+
+      - name: lineitem_discount
+        data_type: number
+        description: "Descuento aplcado sobre el precio del articulo"
+
+      - name: lineitem_tax
+        data_type: number
+        description: "Impuestos aplicados sobre el precio del articulo"
+
+      - name: lineitem_return_flag
+        data_type: varchar
+        description: "Estado de la devolución del articulo: No devuelto (N), devolución rechazada (R), devolución aceptada (A)"
+        data_tests:
+          - accepted_values:
+              values: ['N', 'R', 'A']
+          - not_null
+
+      - name: lineitem_line_status
+        data_type: varchar
+        description: "Estado del pedido: Acabado (F, finished) o Abierto (O, Open)"
+        data_tests:
+          - accepted_values:
+              values: ['F', 'O']
+          - not_null
+
+      - name: lineitem_ship_date
+        data_type: date
+        description: "Fecha de envio del artículo"
+        data_tests:
+          - not_null
+
+      - name: lineitem_commit_date
+        data_type: date
+        description: "Fecha acordada para completar el ciclo completo del articulo"
+        data_tests:
+          - not_null
+
+      - name: lineitem_ship_mode
+        data_type: varchar
+        description: "Metodo de envio del artículo"
+        data_tests:
+          - accepted_values:
+              values: ['AIR', 'FOB', 'MAIL', 'RAIL', 'REG AIR', 'SHIP', 'TRUCK']
+          - not_null
+
+      - name: lineitem_customer_name
+        data_type: varchar
+        description: "Nombre del cliente comprador"
+        data_tests:
+          - not_null

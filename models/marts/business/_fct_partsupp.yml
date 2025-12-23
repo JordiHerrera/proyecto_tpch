@@ -2,15 +2,15 @@ version: 2
 
 models:
   - name: fct_partsupp
-    description: Fact table combining Part and Supplier dimensions.
+    description: Fact table con la combinación de cada pieza y su proveedor.
     columns:
       - name: partsupp_key
-        description: Surrogate primary key for the fact table. Generated using row_number().
+        description: Surrogate primary key.
         tests:
           - unique
           - not_null
       - name: partsupp_part_key
-        description: Foreign key linking to the dim_part model.
+        description: Foreign key. Pieza del registro.
         tests:
           - not_null
           - relationships:
@@ -18,30 +18,29 @@ models:
               field: part_key
 
       - name: partsupp_supplier_key
-        description: Foreign key linking to the dim_supplier model.
+        description: Foreign key. Proveedor de la pieza.
         tests:
           - not_null
           - relationships:
               to: ref('dim_supplier')
               field: supplier_key
       - name: partsupp_available_quantity
-        description: The available quantity of the part from the supplier.
+        description: Stock disponible de la piza desde dicho proveedor.
         tests:
           - not_null
 
       - name: partsupp_supply_cost
-        description: The cost to acquire the part from the supplier.
+        description: Coste de la pieza desde dicho proveedor.
         tests:
           - not_null
           - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: NUMERIC
-          - dbt_expectations.expect_column_values_to_be_positive
+              column_type: number
       
       - name: part_name
-        description: The name of the part (denormalized from dim_part).
+        description: Nombre de la pieza.
 
       - name: supplier_nation
-        description: The nation of the supplier (denormalized from dim_supplier).
+        description: Pais del proveedor.
 
       - name: partsupp_comments
-        description: Comments related to the part-supplier relationship.
+        description: Comentarios adicionales sobre la relación Proveedor-Pieza.

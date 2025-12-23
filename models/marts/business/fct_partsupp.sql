@@ -19,7 +19,7 @@ joined as (
         partsupp_part_key,
         partsupp_supplier_key,
         partsupp_available_quantity,
-        partsupp_supply_cost,
+        cast(partsupp_supply_cost as numeric(16,2)) as partsupp_supply_cost,
         partsupp_comments,
         p.part_key,
         p.part_name,
@@ -36,11 +36,11 @@ joined as (
     inner join supplier s on s.supplier_key = ps.partsupp_supplier_key 
 ),
 
-seq_id as (
+surr_id as (
     select
-        row_number() over(order by partsupp_part_key, partsupp_supplier_key) as partsupp_key,
+        {{ dbt_utils.generate_surrogate_key(['partsupp_part_key', 'partsupp_supplier_key']) }} as partsupp_key,
         *
     from joined
 )
 
-select * from seq_id
+select * from surr_id  

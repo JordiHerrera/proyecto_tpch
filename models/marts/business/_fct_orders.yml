@@ -1,0 +1,106 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: "Registros de pedidos complementados con información de cliente y proveedor añadida"
+    columns:
+      - name: order_key
+        data_type: number
+        description: "Primary key. Identificador de pedido"
+        data_tests:
+          - not_null
+          - unique
+
+      - name: order_customer_key
+        data_type: number
+        description: "Foreign key. Identificador de cliente asociado"
+        data_tests:
+          - not_null
+
+      - name: order_status
+        data_type: varchar
+        description: "Estado del pedido (P, F, O)"
+        data_tests:
+          - accepted_values:
+              values: ['P', 'F', 'O']
+          - not_null
+
+      - name: order_total_price
+        data_type: number
+        description: "Precio total del pedido"
+        data_tests:
+          - not_null
+
+      - name: order_date
+        data_type: date
+        description: "Fecha del pedido. Inicio en 1992"
+        data_tests:
+          - not_null
+
+      - name: order_priority_code
+        data_type: number
+        description: "Codigo de la urgencia del pedido. Numero entero, de mas a menos urgencia"
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5]
+          - not_null
+
+      - name: order_priority_text
+        data_type: varchar
+        description: "Descripción de la urgencia del pedido."
+        data_tests:
+          - accepted_values:
+              values: ['URGENT', 'HIGH', 'MEDIUM', 'NOT SPECIFIED', 'LOW']
+          - not_null
+
+      - name: order_clerk
+        data_type: varchar
+        description: "Identificador de trabajador asociado al pedido"
+        data_tests:
+          - not_null
+
+      - name: order_ship_priority
+        data_type: number
+        description: "Prioridad del envio del pedido"
+        data_tests:
+          - not_null
+
+      - name: order_comment
+        data_type: varchar
+        description: "Comentario con información adicional del pedido"
+
+      - name: order_customer_name
+        data_type: varchar
+        description: "Nombre del cliente dueño del pedido. Originario de la tabla cliente"
+        data_tests:
+          - not_null
+
+      - name: order_customer_address
+        data_type: varchar
+        description: "Dirección del cliente. Originario de la tabla cliente"
+        data_tests:
+          - not_null
+
+      - name: order_customer_phone
+        data_type: varchar
+        description: "Número de telefono de contacto del cliente. Originario de la tabla cliente."
+        data_tests:
+          - not_null
+
+      - name: order_customer_nation
+        data_type: varchar
+        description: "País de origen cliente. Originario de la tabla cliente + tabla país"
+        data_tests:
+          - not_null
+
+      - name: order_customer_region
+        data_type: varchar
+        description: "Región a la que pertenece el país del cliente. Originario de la tabla cliente + tabla región"
+        data_tests:
+          - accepted_values:
+              values: ['AFRICA', 'AMERICA', 'ASIA', 'EUROPE', 'MIDDLE EAST']
+          - not_null
+
+      - name: order_customer_comment
+        data_type: varchar
+        description: "Comentarios con información adicional del cliente al que pertenece el pedido"

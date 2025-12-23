@@ -2,7 +2,7 @@ sources:
   - name: tpch
     database: snowflake_sample_data
     schema: TPCH_SF1
-    description: A clone of a Postgres application database.
+    description: Datos de ejemplo de Snowflake.
     tables:
       - name: customer
         description: Raw customer data.

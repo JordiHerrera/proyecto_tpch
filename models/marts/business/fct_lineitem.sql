@@ -7,6 +7,9 @@
 with
 base_lineitem as (
     select * from {{ ref('stg_lineitem') }}
+    {% if is_incremental() %}
+    where lineitem_commit_date > (select max(lineitem_commit_date) from {{ this }})
+    {% endif %}
 ),
 
 part as (
@@ -47,7 +50,15 @@ joined_rename as (
 
 seq_id as (
     select
-        row_number() over(order by lineitem_order_key, lineitem_part_key, lineitem_supplier_key, lineitem_line_number) as lineitem_key,
+        {{ 
+            dbt_utils.generate_surrogate_key
+            ([
+                'lineitem_order_key', 
+                'lineitem_part_key', 
+                'lineitem_supplier_key', 
+                'lineitem_line_number'
+            ]) 
+        }} as lineitem_key,
         *
     from joined_rename
 )

@@ -1,0 +1,1 @@
+DESCRIBE TABLE {{ ref('fct_partsupp') }};
