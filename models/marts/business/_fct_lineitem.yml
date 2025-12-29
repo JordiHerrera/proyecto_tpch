@@ -4,6 +4,9 @@ version: 2
 models:
   - name: fct_lineitem
     description: "Registro de articulos, de proveedor a pedido"
+    config:
+      grants:
+        select: ['SYSADMIN', 'PUBLIC']
     columns:
       - name: lineitem_key
         data_type: char

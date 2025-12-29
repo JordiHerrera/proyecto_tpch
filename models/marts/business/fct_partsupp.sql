@@ -7,7 +7,7 @@ with supplier as (
 ),
 
 partsupp as (
-    select * from {{ ref ('stg_partsupp')}}
+    select * from {{ ref ('int_partsupp')}}
 ),
 
 part as (
