@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: int_lineitem
+    description: "Capa intermedia lineitem. SOURCE -> FACT"
+    columns:
+      - name: lineitem_key
+  - name: int_orders
+    description: "Capa intermedia pedidos. SOURCE -> FACT"
+    columns:
+      - name: order_key
+  - name: int_partsupp
+    description: "Capa intermedia pieza-proveedor. SOURCE -> FACT."
+    columns:
+      - name: partsupp_part_key
+      - name: partsupp_supplier_key
