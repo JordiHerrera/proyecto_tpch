@@ -4,7 +4,7 @@
 
 with
 orders as (
-    select * from {{ ref('stg_orders') }}
+    select * from {{ ref('int_orders') }}
 ),
 
 customer as (
